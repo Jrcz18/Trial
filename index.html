@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manila Prime Staycation | Luxury Urban Retreat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        yellow: {
+                            light: '#FFF9C4',
+                            DEFAULT: '#FFEB3B',
+                            dark: '#FBC02D',
+                            darker: '#F57F17'
+                        },
+                        charcoal: {
+                            light: '#4A4A4A',
+                            DEFAULT: '#333333',
+                            dark: '#1A1A1A',
+                        },
+                        facebook: {
+                            light: '#4267B2',
+                            DEFAULT: '#3b5998',
+                            dark: '#2f477a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .bg-pattern {
+            background-color: #FFFDE7;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFEB3B' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .yellow-gradient {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFEB3B 100%);
+        }
+        
+        .dark-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.7));
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .amenity-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .amenity-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reminder-item {
+            border-left: 3px solid #FFEB3B;
+        }
+        
+        .yellow-border {
+            position: relative;
+        }
+        
+        .yellow-border::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: #FFEB3B;
+        }
+        
+        .btn-yellow {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+        
+        .btn-yellow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn-yellow:hover::before {
+            left: 100%;
+        }
+        
+        .btn-facebook {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.5s ease;
+            background: linear-gradient(135deg, #4267B2 0%, #3b5998 100%);
+        }
+        
+        .btn-facebook::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn-facebook:hover::before {
+            left: 100%;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 8px;
+        }
+        
+        .feature-list li i {
+            position: absolute;
+            left: 0;
+            top: 4px;
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .price-tag {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .price-tag::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #FF5252;
+            transform: rotate(-10deg);
+        }
+        
+        .calendly-inline-widget {
+            min-width: 320px;
+            height: 580px;
+        }
+        
+        /* Image placeholder styles */
+        .image-placeholder {
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+        
+        .image-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #999;
+        }
+        
+        /* Social media banner */
+        .social-banner {
+            background: linear-gradient(135deg, #4267B2 0%, #3b5998 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .social-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="font-sans text-charcoal bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="bg-yellow rounded-lg p-2 mr-3">
+                        <i class="fas fa-building text-charcoal text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Manila Prime Staycation</h1>
+                        <p class="text-xs text-gray-500">Your Urban Luxury Retreat</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">Home</a>
+                    <a href="#details" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">Details</a>
+                    <a href="#amenities" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">Amenities</a>
+                    <a href="#location" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">Location</a>
+                    <a href="#rules" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">House Rules</a>
+                    <a href="#booking" class="text-charcoal hover:text-yellow-dark transition-colors duration-300 font-medium">Booking</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#booking" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-2 px-6 rounded-full transition-colors duration-300 btn-yellow">
+                        Book Now
+                    </a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-charcoal focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="flex flex-col space-y-4 pt-4 pb-4">
+                    <a href="#home" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">Home</a>
+                    <a href="#details" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">Details</a>
+                    <a href="#amenities" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">Amenities</a>
+                    <a href="#location" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">Location</a>
+                    <a href="#rules" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">House Rules</a>
+                    <a href="#booking" class="text-charcoal hover:text-yellow-dark transition-colors duration-300">Booking</a>
+                    <a href="#booking" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-2 px-6 rounded-full transition-colors duration-300 text-center">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-pattern">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <span class="bg-yellow-light text-yellow-darker px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">Premium Urban Staycation</span>
+                    <h1 class="text-4xl md:text-5xl font-serif font-bold text-charcoal mb-6">
+                        Your Luxury Retreat in Manila
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Experience premium comfort in our elegantly furnished unit at Manila Prime Staycation. Perfect for both business travelers and vacationers seeking a central location with all the comforts of home.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="flex items-center bg-yellow-light rounded-full px-4 py-2">
+                            <i class="fas fa-bed text-yellow-darker mr-2"></i>
+                            <span class="text-sm font-medium">Comfortable Beds</span>
+                        </div>
+                        <div class="flex items-center bg-yellow-light rounded-full px-4 py-2">
+                            <i class="fas fa-wifi text-yellow-darker mr-2"></i>
+                            <span class="text-sm font-medium">Free WiFi</span>
+                        </div>
+                        <div class="flex items-center bg-yellow-light rounded-full px-4 py-2">
+                            <i class="fas fa-map-marker-alt text-yellow-darker mr-2"></i>
+                            <span class="text-sm font-medium">Central Location</span>
+                        </div>
+                        <div class="flex items-center bg-yellow-light rounded-full px-4 py-2">
+                            <i class="fas fa-swimming-pool text-yellow-darker mr-2"></i>
+                            <span class="text-sm font-medium">Pool Access</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#booking" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-3 px-8 rounded-full transition-all duration-300 btn-yellow text-center">
+                            Book Your Stay
+                        </a>
+                        <a href="#details" class="bg-transparent border-2 border-yellow text-charcoal hover:bg-yellow-light font-medium py-3 px-8 rounded-full transition-all duration-300 text-center">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="image-container shadow-xl">
+                        <!-- Replace with your image -->
+                        <div class="image-placeholder h-96">
+                            <i class="fas fa-image"></i>
+                            <p>Add your bedroom image here</p>
+                            <p class="text-sm text-gray-500 mt-2">Replace with: your-bedroom-image.jpg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-12 bg-yellow-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-serif font-bold mb-2">Special Promo Rate</h3>
+                    <p class="text-gray-700">Book now and enjoy our limited-time offer</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center min-w-[150px]">
+                        <p class="text-sm text-gray-600 mb-1">Regular Price</p>
+                        <p class="text-xl font-bold text-gray-500 price-tag">₱2,500</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center min-w-[150px] relative">
+                        <div class="absolute -top-3 -right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                            SAVE ₱601
+                        </div>
+                        <p class="text-sm text-gray-600 mb-1">Promo Price</p>
+                        <p class="text-2xl font-bold text-yellow-darker">₱1,899</p>
+                        <p class="text-xs text-gray-500">per night</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facebook Banner -->
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-4">
+            <a href="https://www.facebook.com/ManilaPrimeStaycation" target="_blank" class="block">
+                <div class="social-banner rounded-xl shadow-lg overflow-hidden">
+                    <div class="flex flex-col md:flex-row items-center justify-between p-6 md:p-8">
+                        <div class="flex items-center mb-4 md:mb-0">
+                            <div class="bg-white rounded-full p-3 mr-5">
+                                <i class="fab fa-facebook-f text-[#4267B2] text-2xl"></i>
+                            </div>
+                            <div class="text-white">
+                                <h3 class="text-2xl font-bold mb-1">Visit Us on Facebook</h3>
+                                <p class="text-blue-100">Follow our page for updates, promotions, and more!</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="bg-white text-[#4267B2] font-medium py-2 px-6 rounded-full transition-all duration-300 hover:bg-blue-50 flex items-center">
+                                <span>Manila Prime Staycation</span>
+                                <i class="fas fa-external-link-alt ml-2 text-sm"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Unit Details Section -->
+    <section id="details" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 relative inline-block yellow-border pb-4">
+                    Unit Details
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our fully furnished unit offers everything you need for a comfortable and luxurious stay.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-md p-6 feature-card">
+                    <div class="bg-yellow-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-map-marker-alt text-yellow-darker text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Prime Location</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Located in the heart of Manila with easy access to major attractions
+                    </p>
+                    <p class="text-sm text-center text-yellow-darker font-medium">
+                        Close to shopping malls, restaurants, and business districts
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 feature-card">
+                    <div class="bg-yellow-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-bed text-yellow-darker text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Comfortable Space</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Thoughtfully designed space with quality furnishings
+                    </p>
+                    <p class="text-sm text-center text-yellow-darker font-medium">
+                        Perfect for couples, solo travelers, or business trips
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md p-6 feature-card">
+                    <div class="bg-yellow-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-concierge-bell text-yellow-darker text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Premium Amenities</h3>
+                    <p class="text-gray-600 text-center mb-4">
+                        Access to building amenities including pool and fitness center
+                    </p>
+                    <p class="text-sm text-center text-yellow-darker font-medium">
+                        24/7 security and convenient self check-in
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-8 md:p-12">
+                            <h3 class="text-2xl font-serif font-bold mb-6">Unit Inclusions</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Comfortable Beds</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Sofa</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Smart TV</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Netflix</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>High-Speed WiFi</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Air Conditioning</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Hot & Cold Shower</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Toiletries</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Fresh Towels</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Dining Area</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Refrigerator</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Microwave</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Electric Kettle</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Basic Kitchenware</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Work Desk</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-yellow-dark mr-3"></i>
+                                    <span>Wardrobe</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-container h-full">
+                            <!-- Replace with your image -->
+                            <div class="image-placeholder h-full">
+                                <i class="fas fa-image"></i>
+                                <p>Add your living room image here</p>
+                                <p class="text-sm text-gray-500 mt-2">Replace with: your-living-room-image.jpg</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-16 bg-pattern">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 relative inline-block yellow-border pb-4">
+                    Building Amenities
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Enjoy exclusive access to premium amenities during your stay.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg amenity-icon">
+                    <div class="h-64 bg-charcoal-light relative image-container">
+                        <!-- Replace with your image -->
+                        <div class="image-placeholder h-full">
+                            <i class="fas fa-swimming-pool"></i>
+                            <p>Add your pool image here</p>
+                            <p class="text-sm text-gray-500 mt-2">Replace with: your-pool-image.jpg</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4">Swimming Pool</h3>
+                        <p class="text-gray-600 mb-4">
+                            Relax and unwind in our refreshing swimming pool with stunning views.
+                        </p>
+                        <div class="flex items-center text-sm text-yellow-darker font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <span>Open daily from 6AM to 10PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg amenity-icon">
+                    <div class="h-64 bg-charcoal-light relative image-container">
+                        <!-- Replace with your image -->
+                        <div class="image-placeholder h-full">
+                            <i class="fas fa-dumbbell"></i>
+                            <p>Add your gym image here</p>
+                            <p class="text-sm text-gray-500 mt-2">Replace with: your-gym-image.jpg</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4">Fitness Center</h3>
+                        <p class="text-gray-600 mb-4">
+                            Stay fit during your stay with our well-equipped fitness center.
+                        </p>
+                        <div class="flex items-center text-sm text-yellow-darker font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <span>24/7 access for guests</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg amenity-icon">
+                    <div class="h-64 bg-charcoal-light relative image-container">
+                        <!-- Replace with your image -->
+                        <div class="image-placeholder h-full">
+                            <i class="fas fa-tree"></i>
+                            <p>Add your garden image here</p>
+                            <p class="text-sm text-gray-500 mt-2">Replace with: your-garden-image.jpg</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-4">Garden & Leisure Areas</h3>
+                        <p class="text-gray-600 mb-4">
+                            Enjoy beautifully landscaped gardens and outdoor leisure spaces.
+                        </p>
+                        <div class="flex items-center text-sm text-yellow-darker font-medium">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <span>Perfect for relaxation and fresh air</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 relative inline-block yellow-border pb-4">
+                    Prime Location
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Perfectly positioned in the heart of Manila with easy access to major attractions and business districts.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-2xl font-serif font-bold mb-6">Nearby Attractions</h3>
+                        <ul class="space-y-4 feature-list">
+                            <li>
+                                <i class="fas fa-shopping-bag text-yellow-dark"></i>
+                                <span class="font-medium">Shopping Malls</span> - Within walking distance
+                            </li>
+                            <li>
+                                <i class="fas fa-utensils text-yellow-dark"></i>
+                                <span class="font-medium">Restaurants & Cafés</span> - Numerous options nearby
+                            </li>
+                            <li>
+                                <i class="fas fa-building text-yellow-dark"></i>
+                                <span class="font-medium">Business Districts</span> - Easy access
+                            </li>
+                            <li>
+                                <i class="fas fa-landmark text-yellow-dark"></i>
+                                <span class="font-medium">Cultural Attractions</span> - Short drive away
+                            </li>
+                            <li>
+                                <i class="fas fa-subway text-yellow-dark"></i>
+                                <span class="font-medium">Public Transportation</span> - Convenient access
+                            </li>
+                            <li>
+                                <i class="fas fa-hospital text-yellow-dark"></i>
+                                <span class="font-medium">Medical Facilities</span> - Nearby
+                            </li>
+                            <li>
+                                <i class="fas fa-store text-yellow-dark"></i>
+                                <span class="font-medium">Convenience Stores</span> - Within the building
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8">
+                            <a href="https://maps.app.goo.gl/c9DLGQJCrnJ7igkU7" target="_blank" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 btn-yellow inline-flex items-center">
+                                <i class="fas fa-map-marker-alt mr-2"></i> View on Google Maps
+                            </a>
+                        </div>
+                    </div>
+                    <div class="h-96 md:h-auto">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.802548850001!2d120.98!3d14.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDM0JzQ4LjAiTiAxMjDCsDU4JzQ4LjAiRQ!5e0!3m2!1sen!2sph!4v1620000000000!5m2!1sen!2sph" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            class="rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- House Rules Section -->
+    <section id="rules" class="py-16 bg-pattern">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 relative inline-block yellow-border pb-4">
+                    House Rules
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    To ensure a comfortable and pleasant stay for everyone, please observe the following guidelines.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-exclamation-circle text-yellow-dark mr-3"></i>
+                            Important Reminders
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">No Smoking</p>
+                                <p class="text-sm text-gray-600">Strictly prohibited inside the unit.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">No Parties</p>
+                                <p class="text-sm text-gray-600">Quiet hours from 10PM to 8AM.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Registered Guests Only</p>
+                                <p class="text-sm text-gray-600">Only guests listed on the reservation are allowed.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">No Pets</p>
+                                <p class="text-sm text-gray-600">We love animals, but they're not allowed in the unit.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Check-in/Check-out Times</p>
+                                <p class="text-sm text-gray-600">Check-in: 2PM | Check-out: 12PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-6 flex items-center">
+                            <i class="fas fa-check-circle text-yellow-dark mr-3"></i>
+                            Additional Guidelines
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Respect the Property</p>
+                                <p class="text-sm text-gray-600">Please treat the unit and furnishings with care.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Clean as You Go</p>
+                                <p class="text-sm text-gray-600">Help maintain cleanliness during your stay.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Conserve Energy</p>
+                                <p class="text-sm text-gray-600">Turn off lights, AC, and appliances when not in use.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Security</p>
+                                <p class="text-sm text-gray-600">Lock doors and windows when leaving the unit.</p>
+                            </div>
+                            <div class="pl-4 py-2 reminder-item">
+                                <p class="font-medium">Report Issues Promptly</p>
+                                <p class="text-sm text-gray-600">Let us know of any concerns so we can address them quickly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div class="p-8 md:p-12 bg-charcoal-light text-white">
+                            <div class="mb-8">
+                                <a href="https://www.facebook.com/ManilaPrimeStaycation" target="_blank" class="bg-facebook hover:bg-facebook-dark text-white font-medium py-3 px-8 rounded-md transition-all duration-300 btn-facebook block text-center shadow-lg">
+                                    <i class="fab fa-facebook-f mr-2"></i> Book Your Stay
+                                </a>
+                            </div>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="text-lg font-medium mb-2 text-yellow">Special Promo Rate</h4>
+                                    <p class="text-3xl font-bold text-white">₱1,899 <span class="text-sm font-normal text-gray-300">per night</span></p>
+                                    <p class="text-sm text-gray-300 line-through">Regular price: ₱2,500</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-2 text-yellow">Check-in/Check-out</h4>
+                                    <p class="text-gray-300">Check-in: 2:00 PM</p>
+                                    <p class="text-gray-300">Check-out: 12:00 PM</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-2 text-yellow">Contact</h4>
+                                    <p class="text-gray-300">For immediate assistance:</p>
+                                    <p class="text-white font-medium">09850600545</p>
+                                    <p class="text-white font-medium">primestaycation24@gmail.com</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium mb-2 text-yellow">Booking Methods</h4>
+                                    <div class="space-y-3 mt-4">
+                                        <a href="https://calendly.com/primestaycation24/booking" target="_blank" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 btn-yellow block text-center">
+                                            Book via Calendly
+                                        </a>
+                                        <a href="https://www.airbnb.com/calendar/ical/564.ics?s=a8faa917ac36fa13c1a787e056e61a2b&locale=en-GB" target="_blank" class="bg-transparent border border-yellow text-yellow hover:bg-yellow-dark hover:text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 block text-center">
+                                            <i class="fab fa-airbnb mr-2"></i> View Airbnb Calendar
+                                        </a>
+                                        <a href="tel:09850600545" class="bg-transparent border border-yellow text-yellow hover:bg-yellow-dark hover:text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 block text-center">
+                                            Call to Book
+                                        </a>
+                                        <a href="mailto:primestaycation24@gmail.com" class="bg-transparent border border-yellow text-yellow hover:bg-yellow-dark hover:text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 block text-center">
+                                            Email Us
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-8 md:p-12">
+                            <h3 class="text-2xl font-serif font-bold mb-6">Calendly Booking</h3>
+                            <div class="calendly-inline-widget" data-url="https://calendly.com/primestaycation24/booking"></div>
+                            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-pattern">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6 relative inline-block yellow-border pb-4">
+                    Contact Us
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Have questions or need assistance? We're here to help make your stay perfect.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-6">Get in Touch</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-light p-3 rounded-full mr-4">
+                                        <i class="fas fa-phone text-yellow-darker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Phone</h4>
+                                        <p class="text-gray-600">09850600545</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-light p-3 rounded-full mr-4">
+                                        <i class="fas fa-envelope text-yellow-darker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Email</h4>
+                                        <p class="text-gray-600">primestaycation24@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-light p-3 rounded-full mr-4">
+                                        <i class="fab fa-whatsapp text-yellow-darker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">WhatsApp</h4>
+                                        <p class="text-gray-600">09850600545</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-yellow-light p-3 rounded-full mr-4">
+                                        <i class="fas fa-calendar text-yellow-darker"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium">Booking Link</h4>
+                                        <p class="text-gray-600">
+                                            <a href="https://calendly.com/primestaycation24/booking" class="text-yellow-darker hover:underline">calendly.com/primestaycation24</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.facebook.com/ManilaPrimeStaycation" target="_blank" class="bg-yellow-light p-3 rounded-full text-yellow-darker hover:bg-yellow transition-colors duration-300">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@manila.prime?_t=ZS-8yPIDwX3sPf&_r=1" target="_blank" class="bg-yellow-light p-3 rounded-full text-yellow-darker hover:bg-yellow transition-colors duration-300">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                    <a href="#" class="bg-yellow-light p-3 rounded-full text-yellow-darker hover:bg-yellow transition-colors duration-300">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.airbnb.com/calendar/ical/564.ics?s=a8faa917ac36fa13c1a787e056e61a2b&locale=en-GB" target="_blank" class="bg-yellow-light p-3 rounded-full text-yellow-darker hover:bg-yellow transition-colors duration-300">
+                                        <i class="fab fa-airbnb"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-6">Send a Message</h3>
+                            <form class="space-y-4">
+                                <div>
+                                    <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                    <input type="text" id="contact-name" name="contact-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                    <input type="email" id="contact-email" name="contact-email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                    <input type="text" id="contact-subject" name="contact-subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow focus:border-transparent" required>
+                                </div>
+                                <div>
+                                    <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea id="contact-message" name="contact-message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow focus:border-transparent" required></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="bg-yellow hover:bg-yellow-dark text-charcoal font-medium py-2 px-6 rounded-md transition-colors duration-300 btn-yellow">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="bg-yellow rounded-lg p-2 mr-3">
+                            <i class="fas fa-building text-charcoal text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Manila Prime Staycation</h3>
+                            <p class="text-xs text-gray-400">Your Urban Luxury Retreat</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        Experience premium comfort in our elegantly furnished unit in the heart of Manila. Perfect for both business travelers and vacationers.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/ManilaPrimeStaycation" target="_blank" class="text-gray-400 hover:text-yellow transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@manila.prime?_t=ZS-8yPIDwX3sPf&_r=1" target="_blank" class="text-gray-400 hover:text-yellow transition-colors duration-300">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-yellow transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.airbnb.com/calendar/ical/564.ics?s=a8faa917ac36fa13c1a787e056e61a2b&locale=en-GB" target="_blank" class="text-gray-400 hover:text-yellow transition-colors duration-300">
+                            <i class="fab fa-airbnb"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-yellow transition-colors duration-300">Home</a></li>
+                        <li><a href="#details" class="text-gray-400 hover:text-yellow transition-colors duration-300">Unit Details</a></li>
+                        <li><a href="#amenities" class="text-gray-400 hover:text-yellow transition-colors duration-300">Amenities</a></li>
+                        <li><a href="#location" class="text-gray-400 hover:text-yellow transition-colors duration-300">Location</a></li>
+                        <li><a href="#rules" class="text-gray-400 hover:text-yellow transition-colors duration-300">House Rules</a></li>
+                        <li><a href="#booking" class="text-gray-400 hover:text-yellow transition-colors duration-300">Book Now</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-yellow transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contact Information</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow mr-3 mt-1"></i>
+                            <span class="text-gray-400">
+                                <a href="https://maps.app.goo.gl/c9DLGQJCrnJ7igkU7" target="_blank" class="hover:text-yellow transition-colors duration-300">
+                                    View on Google Maps
+                                </a>
+                            </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-yellow mr-3 mt-1"></i>
+                            <span class="text-gray-400">09850600545</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-yellow mr-3 mt-1"></i>
+                            <span class="text-gray-400">primestaycation24@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-yellow mr-3 mt-1"></i>
+                            <span class="text-gray-400">Check-in: 2:00 PM | Check-out: 12:00 PM</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-calendar-alt text-yellow mr-3 mt-1"></i>
+                            <span class="text-gray-400">
+                                <a href="https://calendly.com/primestaycation24/booking" target="_blank" class="hover:text-yellow transition-colors duration-300">
+                                    Book via Calendly
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center">
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 Manila Prime Staycation. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top bg-yellow hover:bg-yellow-dark text-charcoal w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+        
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Form submission (prevent default for demo)
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('This is a demo form. In a real application, this would submit your information.');
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'966566c5253603b7',t:'MTc1MzcxNjQ1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
